@@ -1,41 +1,71 @@
 var font = "12pt Helvetica";
 var setsPerRow = 3;
-var datasets = ["students", "age", "gender", "languages", "race", "ownership", "residence", "wages", "marital"];
+var datasets = ["students", "age", "gender", "languages", "race", "ownership", "residence", "wages", "marital", "commuting"];
 var colors = ["#41A8C4", "#26788E", "#458A9E", "#12353F"];
 
 var height = "220px";
-
-for(i=0; i < Math.round(datasets.length/setsPerRow); i++ ) {
-  var div = d3.select(".container-fluid").append("div")
-              .attr("class", "row");
-}
-
-datasets.forEach(function(set, index) {
-  addColumn(set, index);
-  drawCircles(set);
-});
+createStructure();
+drawBubbles();
 drawTable();
 
-function addColumn(set, index) {
-  var row = Math.ceil((index+ 1)/setsPerRow);
-  var column = d3.select(".container-fluid")
+function createStructure() {
+  var left = d3.select("#left");
+  var middleLeft = d3.select("#middleLeft");
+  var middleRight = d3.select("#middleRight");
+  var right = d3.select("#right");
+
+  for(i=0;i < setsPerRow * 2; i++) {
+    var row = Math.ceil((i+ 1)/setsPerRow);
+    var column = d3.select(".container-fluid")
               .selectAll(".row")
               .filter(":nth-child(" + row + ")").append("div")
               .attr("class", "col-md-4")
-              .attr("id", set);
+              .attr("id", datasets[i]);
+  }
+
+
+  for(i=setsPerRow*2; i < datasets.length; i++) {
+    if(i%2 == 0) {
+      left.append("div")
+          .attr("class", "col-md-12")
+          .attr("id", datasets[i]);       
+    }
+    else {
+      right.append("div")
+          .attr("class", "col-md-12")
+          .attr("id", datasets[i]); 
+    }
+  }
+
+  middleLeft.append("ul")
+        .attr("id", "out-of-100-left");
+    middleRight.append("ul")
+        .attr("id", "out-of-100-right");
+}
+
+function drawBubbles() {
+  datasets.forEach(function(set, index) {
+    drawCircles(set);
+  });
 }
 
 function drawTable() {
-  var of100 = [];
+  var listLeft = d3.select("#out-of-100-left");
+  var listRight = d3.select("#out-of-100-right");
   datasets.forEach(function(set, index) {
     var fileName = "json/" + set + ".json";
     d3.json(fileName, function(json) {
-      d3.json(fileName, function(json) {
-        json.nodes.forEach(function(data) {
-          var elt = data.r + " " + data.label;
-          of100.push (elt)
-          console.log(elt)
-        })
+      json.nodes.forEach(function(data, index) {
+        var elt = data.r + " " + data.label;
+        var addLeft = index%2 ==0;
+        if(addLeft) {
+          listLeft.append("li")
+                  .text(elt)
+        }
+        else {
+          listRight.append("li")
+              .text(elt)
+        }
       })
     })
   })
