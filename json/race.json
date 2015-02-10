@@ -1,0 +1,6 @@
+{"nodes":[
+  { "label": "white", "r": 83 },
+  { "label": "hispanic", "r": 8 },
+  { "label": "asian", "r": 4 },
+  { "label": "other", "r": 1 }
+]}
