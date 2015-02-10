@@ -1,4 +1,5 @@
-{"nodes":[
-  { "label": "non-Students", "r": 71 },
-  { "label": "students", "r": 29 }
-]}
+{"data":[
+  { "label": "non-students", "percent": 71 },
+  { "label": "students", "percent": 29 }
+],
+"title": "Students"}

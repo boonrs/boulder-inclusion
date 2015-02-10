@@ -1,6 +1,7 @@
-{"nodes":[
-  { "label": "white", "r": 83 },
-  { "label": "hispanic", "r": 8 },
-  { "label": "asian", "r": 4 },
-  { "label": "other", "r": 1 }
-]}
+{"data":[
+  { "label": "white", "percent": 83 },
+  { "label": "hispanic", "percent": 8 },
+  { "label": "asian", "percent": 4 },
+  { "label": "other", "percent": 1 }
+],
+"title": "Race & Ethnicity"}

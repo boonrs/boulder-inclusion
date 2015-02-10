@@ -1,4 +1,5 @@
-{"nodes":[
-  { "label": "live outside", "r": 59 },
-  { "label": "live & work", "r": 41 }
-]}
+{"data":[
+  { "label": "live outside", "percent": 59 },
+  { "label": "live in", "percent": 41 }
+],
+"title": "Work in Boulder"}

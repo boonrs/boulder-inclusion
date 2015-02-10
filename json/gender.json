@@ -1,4 +1,5 @@
-{"nodes":[
-  { "label": "female", "r": 48 },
-  { "label": "male", "r": 52 }
-]}
+{"data":[
+  { "label": "female", "percent": 48 },
+  { "label": "male", "percent": 52 }
+],
+"title": "Gender"}

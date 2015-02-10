@@ -1,4 +1,5 @@
-{"nodes":[
-  { "label": "owner", "r": 49 },
-  { "label": "renter", "r": 51 }
-]}
+{"data":[
+  { "label": "owner", "percent": 49 },
+  { "label": "renter", "percent": 51 }
+],
+"title": "Home Ownership"}

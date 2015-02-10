@@ -1,6 +1,7 @@
-{"nodes":[
-  { "label": "under $50k", "r": 46 },
-  { "label": "$50k - $100k", "r": 24 },
-  { "label": "$100k - $200k", "r": 21 },
-  { "label": "over $200k", "r": 10 }
-]}
+{"data":[
+  { "label": "under $50k", "percent": 46 },
+  { "label": "50+ ", "percent": 24 },
+  { "label": "100+", "percent": 21 },
+  { "label": "200+", "percent": 10 }
+],
+"title": "Household Income"}

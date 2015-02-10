@@ -1,4 +1,5 @@
-{"nodes":[
-  { "label": "single", "r": 66 },
-  { "label": "married", "r": 34 }
-]}
+{"data":[
+  { "label": "single", "percent": 66 },
+  { "label": "married", "percent": 34 }
+],
+"title": "Marital Status"}

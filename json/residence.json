@@ -1,4 +1,5 @@
-{"nodes":[
-  { "label": "since 2005", "r": 53 },
-  { "label": "before 2005", "r": 47 }
-]}
+{"data":[
+  { "label": "since 2005", "percent": 53 },
+  { "label": "before 2005", "percent": 47 }
+],
+"title": "Time at Current Home"}

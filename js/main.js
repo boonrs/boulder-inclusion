@@ -28,12 +28,12 @@ function createStructure() {
     if(i%2 == 0) {
       left.append("div")
           .attr("class", "col-md-12")
-          .attr("id", datasets[i]);       
+          .attr("id", datasets[i]);
     }
     else {
       right.append("div")
           .attr("class", "col-md-12")
-          .attr("id", datasets[i]); 
+          .attr("id", datasets[i]);
     }
   }
 
@@ -55,8 +55,8 @@ function drawTable() {
   datasets.forEach(function(set, index) {
     var fileName = "json/" + set + ".json";
     d3.json(fileName, function(json) {
-      json.nodes.forEach(function(data, index) {
-        var elt = data.r + " " + data.label;
+      json.data.forEach(function(data, index) {
+        var elt = data.percent + " " + data.label;
         var addLeft = index%2 ==0;
         if(addLeft) {
           listLeft.append("li")
@@ -74,40 +74,49 @@ function drawTable() {
 function drawCircles(id) {
   var fileName = "json/" + id + ".json";
   var div = d3.select("#" + id);
-  var title = div.append("h2")
-              .attr("class", "bubble-title")
-              .text(id)
   var svg = div.append("svg")
                .attr("width", "100%")
                .attr("height", height);
 
   d3.json(fileName, function(json) {
+    /* Bubble Title */
+     var title = div.insert("h2", ":first-child")
+              .attr("class", "bubble-title")
+              .text(json.title)
+
     /* Define the data for the circles */
     var elem = svg.selectAll("g myCircleText")
-        .data(json.nodes)
+        .data(json.data)
   
     /*Create and place the "blocks" containing the circle and the text */  
     var elemEnter = elem.enter()
       .append("g")
-      .attr("transform", function(d, i){return "translate("+ calculateX(json.nodes, i) + ",90)"})
+      .attr("transform", function(d, i){return "translate("+ calculateX(json.data, i) + ",90)"})
  
     /*Create the circle for each block */
     var circle = elemEnter.append("circle")
-      .attr("r", function(d){return d.r} )
+      .attr("r", function(d){return d.percent
+} )
       .attr("fill", function(d, i) {return colors[i]})
 
     /* Create the text for each block */
     elemEnter.append("foreignObject")
       // .attr("x", function(d){return - (d.label.length * 3.5) } )
-      .attr("x", function(d) {return - d.r })
-      .attr("y", function(d){return - d.r } )
-      .attr("width", function(d) { return d.r * 2 })
-      .attr("height", function(d) { return d.r * 2 })
+      .attr("x", function(d) {return - d.percent
+ })
+      .attr("y", function(d){return - d.percent
+ } )
+      .attr("width", function(d) { return d.percent
+ * 2 })
+      .attr("height", function(d) { return d.percent
+ * 2 })
       .append("xhtml:div")// replace with html element you want
       .attr("class", "bubble-label")
       .style("font", font)
-      .text(function(d){return addLabel(d.label, d.r)})
-      .attr("title", function(d) { return d.label + "\n" + d.r + "%"})
+      .text(function(d){return addLabel(d.label, d.percent
+)})
+      .attr("title", function(d) { return d.label + "\n" + d.percent
+ + "%"})
 
     /* Create hover text for each block */
 
@@ -117,9 +126,11 @@ function drawCircles(id) {
 function calculateX(nodes, index) {
   var sum = 0;
   for( i=0; i < index; i++){
-    sum += (2 * nodes[i].r);
+    sum += (2 * nodes[i].percent
+);
   }
-  return 100 + nodes[index].r + sum;    
+  return 100 + nodes[index].percent
+ + sum;    
 }
 
 function addLabel(label, radius) {
